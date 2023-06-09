@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task List</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			border: 1px solid rgb(172, 254, 20);
+			padding: 8px;
+			text-align: left;
+		}
+		button {
+			background-color: rgba(8, 209, 112, 0.603);
+			color: white;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+		tr:nth-child(even) {
+			background-color: #91d0f4;
+		}
+	</style>
+</head>
+<body>
+	<h1><i>My Task List</i></h1>
+
+	<form>
+		<label for="task">Task:</label>
+		<input type="text" id="task" name="task">
+		<label for="deadline">Deadlinedate:</label>
+		<input type="datetime-local" id="deadline" name="deadline">
+		<button type="button" onclick="addTask()">Add Task</button>
+	</form>
+
+	<table id="taskTable">
+		<thead>
+			<tr>
+				<th>Task</th>
+				<th>Deadline</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Pay bills</td>
+				<td>2022-01-31</td>
+				<td>
+					<button type="button" onclick="markComplete(this)">Mark Complete</button>
+					<button type="button" onclick="editTask(this)">Edit</button>
+					<button type="button" onclick="deleteTask(this)">Delete</button>
+				</td>
+			</tr>
+			<tbody>
+				<tr>
+					<td>Study for exams</td>
+					<td>2022-01-31</td>
+					<td>
+						<button type="button" onclick="markComplete(this)">Mark Complete</button>
+						<button type="button" onclick="editTask(this)">Edit</button>
+						<button type="button" onclick="deleteTask(this)">Delete</button>
+					</td>
+				</tr>
+			<tr>
+				<td>Buy groceries</td>
+				<td>2022-02-28</td>
+				<td>
+					<button type="button" onclick="markComplete(this)">Mark Complete</button>
+					<button type="button" onclick="editTask(this)">Edit</button>
+					<button type="button" onclick="deleteTask(this)">Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Do laundry and change pillowcases</td>
+				<td>2022-03-31</td>
+				<td>
+					<button type="button" onclick="markComplete(this)">Mark Complete</button>
+					<button type="button" onclick="editTask(this)">Edit</button>
+					<button type="button" onclick="deleteTask(this)">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script>
+		function addTask() {
+			var task = document.getElementById("task").value;
+			var deadlinedate = document.getElementById("deadline").value;
+
+			if (task === "" || deadline === "") {
+				alert("Please enter a task and deadline.");
+				return false;
+			}
+
+			var table = document.getElementById("taskTable").getElementsByTagName("tbody")[0];
+
+			var row = table.insertRow();
+
+			var taskCell = row.insertCell(0);
+			taskCell.innerHTML = task;
+
+			var deadlineCell = row.insertCell(1);
+			deadlineCell.innerHTML = deadline;
+
+			var actionCell = row.insertCell(2);
+			actionCell.innerHTML = '<button type="button" onclick="markComplete(this)">Mark Complete</button>' +
+									' <button type="button" onclick="editTask(this)">Edit</button>' +
+									' <button type="button" onclick="deleteTask(this)">Delete</button>';
+
+			document.getElementById("task").value = "";
+			document.getElementById("deadline").value = "";
+		}
+
+		function markComplete(button) {
+			var row = button.parentNode.parentNode;
+			row.style.textDecoration = "line-through";
+			row.style.color = "gray";
+			button.disabled = true;
+		}
+
+		function editTask(button) {
+			var row = button.parentNode.parentNode;
+			var taskCell = row.getElementsByTagName("td")[0];
+			var task = taskCell.innerHTML;
+			var deadlineCell = row.getElementsByTagName("td")[1];
+			var deadline = deadlineCell.innerHTML;
+
+			document.getElementById("task").value = task;
+			document.getElementById("deadline").value = deadline;
+
+			row.remove();
+		}
+
+		function deleteTask(button) {
+			var row = button.parentNode.parentNode;
+			row.remove();
+		}
+		var modal = document.getElementById("modal");
+		var openModalBtn=document.getElementById("open-modal");
+		var closeModalBtn=document.getElementsByClassName("close")[0];
+
+		
+	</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task List</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			border: 1px solid rgb(172, 254, 20);
+			padding: 8px;
+			text-align: left;
+		}
+		button {
+			background-color: rgba(8, 209, 112, 0.603);
+			color: white;
+			border: 1px solid black;
+			cursor: pointer;
+		}
+		tr:nth-child(even) {
+			background-color: #91d0f4;
+		}
+	</style>
+</head>
+<body>
+	<h1><i>My Task List</i></h1>
+
+	<form>
+		<label for="task_name">Task Name:</label>
+		<input type="text" id="task_name" name="task_name">
+		<label for="deadline">Deadlinedate:</label>
+		<input type="datetime-local" id="deadline" name="deadline">
+		<button type="button" onclick="addTask()">Add Task</button>
+	</form>
+
+	<table id="Tasks">
+		<thead>
+			<tr>
+				<th>Task Name</th>
+				<th>Deadline</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Pay bills</td>
+				<td>2022-01-31</td>
+				<td>
+					<button type="button" onclick="markComplete(this)">Mark Complete</button>
+					<button type="button" onclick="editTask(this)">Edit</button>
+					<button type="button" onclick="deleteTask(this)">Delete</button>
+				</td>
+			</tr>
+			
+	</table>
+
+	<script>
+		function addTask() {
+			var task = document.getElementById("tas_name").value;
+			var deadlinedate = document.getElementById("deadline").value;
+
+			if (task === "" || deadline === "") {
+				alert("Please enter a task and deadline.");
+				return false;
+			}
+
+			var table = document.getElementById("Tasks").getElementsByTagName("tbody")[0];
+
+			var row = table.insertRow();
+
+			var taskCell = row.insertCell(0);
+			taskCell.innerHTML = task;
+
+			var deadlineCell = row.insertCell(1);
+			deadlineCell.innerHTML = deadline;
+
+			var actionCell = row.insertCell(2);
+			actionCell.innerHTML = '<button type="button" onclick="markComplete(this)">Mark Complete</button>' +
+									' <button type="button" onclick="editTask(this)">Edit</button>' +
+									' <button type="button" onclick="deleteTask(this)">Delete</button>';
+
+			document.getElementById("task_name").value = "";
+			document.getElementById("deadline").value = "";
+		}
+
+		function markComplete(button) {
+			var row = button.parentNode.parentNode;
+			row.style.textDecoration = "line-through";
+			row.style.color = "red";
+			button.disabled = true;
+		}
+
+		function editTask(button) {
+			var row = button.parentNode.parentNode;
+			var taskCell = row.getElementsByTagName("td")[0];
+			var task_name = taskCell.innerHTML;
+			var deadlineCell = row.getElementsByTagName("td")[1];
+			var deadline = deadlineCell.innerHTML;
+
+			document.getElementById("task_name").value = task_name;
+			document.getElementById("deadline").value = deadline;
+
+			row.remove();
+		}
+
+		function deleteTask(button) {
+			var row = button.parentNode.parentNode;
+			row.remove();
+		}
+		var modal = document.getElementById("modal");
+		var openModalBtn=document.getElementById("open-modal");
+		var closeModalBtn=document.getElementsByClassName("close")[0];
+
+		
+	</script>
+</body>
+</html>
